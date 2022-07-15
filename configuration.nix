@@ -42,10 +42,8 @@
   environment.etc."i3.conf".text = pkgs.callPackage ./i3-config.nix {};
 
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.theme = "Nordic";
-  environment.systemPackages = let abstractdark pkgs.callPackage ./sddm-theme {}; in [ nordic];
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.layout = "us";
 
   nixpkgs.config.allowUnfree = true;
