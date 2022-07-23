@@ -99,7 +99,7 @@
     virt-manager
     qemu
     libvirt
-
+    polkit
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
