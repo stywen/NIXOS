@@ -187,5 +187,7 @@ bar {
         status_command i3status
 }
 default_border pixel 3
+gaps inner 10
+gaps outer 5
 
 ''
