@@ -78,23 +78,6 @@
   };
 
 
-
-
-
-
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemu.swtpm.enable = true;
-  virtualisation.libvirtd.qemu.ovmf.package = pkgs.OVMFFull;
-
-
-
-
-
-
-
-
-
-
   nixpkgs.config.allowUnfree = true;
   # services.xserver.xkbOptions = {
   #   "eurosign:e";
@@ -137,6 +120,8 @@
     mlocate
     curl
     tree
+    virt-manager
+    qemu
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
