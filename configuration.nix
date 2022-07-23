@@ -38,6 +38,7 @@
   services.xserver.enable = true;
 
   services.xserver.windowManager.i3.enable = true;
+  services.xserver.windowManager.i3.package = pkgs.i3-gaps;
   services.xserver.windowManager.i3.configFile = "/etc/i3.conf";
   environment.etc."i3.conf".text = pkgs.callPackage ./i3-config.nix {};
 
@@ -46,36 +47,11 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   services.xserver.layout = "us";
 
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
 
 
 
-
-  virtualisation.libvirtd = {
-    enable = true;
-
-    onShutdown = "suspend";
-    onBoot = "ignore";
-
-    qemu = {
-      package = pkgs.qemu_kvm;
-      ovmf.enable = true;
-      ovmf.package = pkgs.OVMFFull;
-      swtpm.enable = true;
-      runAsRoot = false;
-    };
-  };
-
-  environment.etc = {
-    "ovmf/edk2-x86_64-secure-code.fd" = {
-      source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
-    };
-
-    "ovmf/edk2-i386-vars.fd" = {
-      source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-i386-vars.fd";
-      mode = "0644";
-      user = "libvirtd";
-    };
-  };
 
 
   nixpkgs.config.allowUnfree = true;
@@ -122,6 +98,8 @@
     tree
     virt-manager
     qemu
+    libvirt
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
